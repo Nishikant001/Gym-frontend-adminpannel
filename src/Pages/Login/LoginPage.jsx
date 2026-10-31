@@ -3,11 +3,14 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 
 import { loginAdmin } from "../../Api/authApi.js";
 import { logoutAdmin } from "../../Api/authApi.js";
+
+import logo from "../../Assets/logo.png"
 
 import {
   Mail,
@@ -68,7 +71,7 @@ const [loading, setLoading] = useState(false);
         "true"
       );
 
-      navigate("/");
+      navigate("/dashboard");
     }
 
   } catch (error) {
@@ -90,7 +93,7 @@ const [loading, setLoading] = useState(false);
 const token = localStorage.getItem("token");
 
   if (token) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return (
@@ -194,7 +197,7 @@ const token = localStorage.getItem("token");
                   "
                 >
                   <img
-                    src="https://res.cloudinary.com/dl58sdjnk/image/upload/v1781975759/ChatGPT_Image_Jun_20_2026_10_45_43_PM_yvuejo.png"
+                    src={logo}
                     alt="logo"
                     className="w-24 scale-150 object-contain xl:w-32"
                   />
@@ -329,7 +332,7 @@ const token = localStorage.getItem("token");
                   "
                 >
                   <img
-                    src="https://res.cloudinary.com/dl58sdjnk/image/upload/v1781027063/ChatGPT_Image_Jun_9_2026_11_13_48_PM_cpas14.png"
+                    src={logo}
                     alt="logo"
                     className="w-24 scale-150 object-contain"
                   />

@@ -1,6 +1,7 @@
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -19,6 +20,9 @@ import {
 
 
 const useDashboard = () => {
+
+  const hasFetched = useRef(false);
+const isFetching = useRef(false);
 
   const [dashboard, setDashboard] =
     useState(null);
@@ -47,6 +51,10 @@ const useDashboard = () => {
 
   const fetchDashboard = useCallback(
     async () => {
+
+       if (isFetching.current) return;
+
+  isFetching.current = true;
 
       try {
 
@@ -105,35 +113,35 @@ const useDashboard = () => {
          * =====================================================
          */
 
-        console.log(
-          "Dashboard Result:",
-          dashboardResult
-        );
-
-        console.log(
-          "Revenue Result:",
-          revenueResult
-        );
-
-        console.log(
-          "Members Result:",
-          membersResult
-        );
-
         // console.log(
-        //   "Workout Result:",
-        //   workoutResult
+        //   "Dashboard Result:",
+        //   dashboardResult
         // );
 
-        console.log(
-          "User Status Result:",
-          statusResult
-        );
+        // console.log(
+        //   "Revenue Result:",
+        //   revenueResult
+        // );
 
-        console.log(
-          "Users Result:",
-          usersResult
-        );
+        // console.log(
+        //   "Members Result:",
+        //   membersResult
+        // );
+
+        // // console.log(
+        // //   "Workout Result:",
+        // //   workoutResult
+        // // );
+
+        // console.log(
+        //   "User Status Result:",
+        //   statusResult
+        // );
+
+        // console.log(
+        //   "Users Result:",
+        //   usersResult
+        // );
 
 
         /*
@@ -150,10 +158,10 @@ const useDashboard = () => {
           const dashboardRes =
             dashboardResult.value;
 
-          console.log(
-            "Dashboard:",
-            dashboardRes
-          );
+          // console.log(
+          //   "Dashboard:",
+          //   dashboardRes
+          // );
 
 
           if (dashboardRes?.success) {
@@ -199,10 +207,10 @@ const useDashboard = () => {
           const revenueRes =
             revenueResult.value;
 
-          console.log(
-            "Revenue:",
-            revenueRes
-          );
+          // console.log(
+          //   "Revenue:",
+          //   revenueRes
+          // );
 
 
           setRevenue(
@@ -235,10 +243,10 @@ const useDashboard = () => {
           const membersRes =
             membersResult.value;
 
-          console.log(
-            "Members:",
-            membersRes
-          );
+          // console.log(
+          //   "Members:",
+          //   membersRes
+          // );
 
 
           setMembers(
@@ -271,10 +279,10 @@ const useDashboard = () => {
           const trainersRes =
             trainersResult.value;
 
-          console.log(
-            "Trainers:",
-            trainersRes
-          );
+          // console.log(
+          //   "Trainers:",
+          //   trainersRes
+          // );
 
           setTrainers(
             trainersRes?.trainers || []
@@ -306,10 +314,10 @@ const useDashboard = () => {
           const statusRes =
             statusResult.value;
 
-          console.log(
-            "User Status:",
-            statusRes
-          );
+          // console.log(
+          //   "User Status:",
+          //   statusRes
+          // );
 
 
           setUserStatus(
@@ -349,10 +357,10 @@ const useDashboard = () => {
           const usersRes =
             usersResult.value;
 
-          console.log(
-            "Users:",
-            usersRes
-          );
+          // console.log(
+          //   "Users:",
+          //   usersRes
+          // );
 
 
           setUsers(
@@ -395,6 +403,7 @@ const useDashboard = () => {
       } finally {
 
         setLoading(false);
+        isFetching.current = false;
 
       }
 
@@ -410,6 +419,10 @@ const useDashboard = () => {
    */
 
   useEffect(() => {
+
+    if (hasFetched.current) return;
+
+  hasFetched.current = true;
 
     fetchDashboard();
 

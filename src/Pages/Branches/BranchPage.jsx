@@ -28,7 +28,7 @@ const BranchPage = () => {
     const data =
       await getAllBranches();
 
-    console.log(data);
+    // console.log(data);
 
     setBranches(data.branches);
 

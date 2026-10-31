@@ -26,7 +26,7 @@ export const sidebarData = [
     items: [
       {
         title: "Dashboard",
-        path: "/",
+        path: "/dashboard",
         icon: LayoutDashboard,
       },
     ],
@@ -115,7 +115,7 @@ export const sidebarData = [
       },
       {
         title: "Order",
-        path: "/carts",
+        path: "/orders",
         icon: ShoppingCart,
       },
       {

@@ -12,7 +12,7 @@ import {
   createGoal,
   updateGoal,
   deleteGoal,
-} from "../../Api/goalGroupApi.js"; 
+} from "../../Api/goalGroupApi.js";
 
 export default function GoalGroupPage() {
   const [goals, setGoals] = useState([]);
@@ -109,14 +109,55 @@ export default function GoalGroupPage() {
     return [...Array(6)].map((_, index) => (
       <div
         key={index}
-        className="animate-pulse rounded-2xl border border-gray-200 bg-white p-6 shadow dark:border-slate-700 dark:bg-slate-900"
+        className="
+          min-w-0
+          w-full
+          animate-pulse
+          rounded-2xl
+          border
+          border-gray-200
+          bg-white
+          p-4
+          shadow
+
+          sm:p-5
+
+          lg:p-6
+
+          dark:border-slate-700
+          dark:bg-slate-900
+        "
       >
-        <div className="mb-5 h-5 w-40 rounded bg-gray-300 dark:bg-slate-700" />
+        {/* Skeleton Title */}
+        <div
+          className="
+            mb-5
+            h-5
+            w-2/3
+            max-w-40
+            rounded
+            bg-gray-300
+            dark:bg-slate-700
+          "
+        />
 
-        <div className="mb-8 h-4 w-64 rounded bg-gray-200 dark:bg-slate-800" />
+        {/* Skeleton Description */}
+        <div
+          className="
+            mb-8
+            h-4
+            w-4/5
+            max-w-64
+            rounded
+            bg-gray-200
+            dark:bg-slate-800
+          "
+        />
 
-        <div className="flex justify-between">
+        {/* Skeleton Buttons */}
+        <div className="flex flex-wrap justify-between gap-3">
           <div className="h-10 w-24 rounded bg-gray-200 dark:bg-slate-800" />
+
           <div className="h-10 w-24 rounded bg-gray-200 dark:bg-slate-800" />
         </div>
       </div>
@@ -128,37 +169,82 @@ export default function GoalGroupPage() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="min-h-screen bg-[#F5F7FB] px-6 py-6 transition-colors duration-300 dark:bg-[#060816]"
+        className="
+          min-h-screen
+          w-full
+          min-w-0
+          overflow-x-hidden
+          bg-[#F5F7FB]
+          px-3
+          py-4
+          transition-colors
+          duration-300
+
+          sm:px-4
+          sm:py-5
+
+          md:px-5
+          md:py-6
+
+          lg:px-6
+
+          dark:bg-[#060816]
+        "
       >
-        {/* Header */}
+        {/* ===============================
+            Header
+        =============================== */}
 
-        <GoalHeader
-          totalGoals={goals.length}
-          onCreate={() => setShowAddModal(true)}
-        />
-
-        {/* Goal Grid */}
-
-        {loading ? (
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {renderSkeleton()}
-          </div>
-        ) : (
-          <GoalGrid
-            goals={goals}
-            onEdit={(goal) => {
-              setSelectedGoal(goal);
-              setShowEditModal(true);
-            }}
-            onDelete={(goal) => {
-              setSelectedGoal(goal);
-              setShowDeleteModal(true);
-            }}
+        <div className="w-full min-w-0">
+          <GoalHeader
+            totalGoals={goals.length}
+            onCreate={() => setShowAddModal(true)}
           />
-        )}
+        </div>
+
+        {/* ===============================
+            Goal Grid
+        =============================== */}
+
+        <div className="mt-5 w-full min-w-0 sm:mt-6 lg:mt-8">
+          {loading ? (
+            <div
+              className="
+                grid
+                w-full
+                min-w-0
+                grid-cols-1
+                gap-4
+
+                sm:gap-5
+
+                lg:grid-cols-2
+                lg:gap-6
+
+                2xl:grid-cols-3
+              "
+            >
+              {renderSkeleton()}
+            </div>
+          ) : (
+            <GoalGrid
+              goals={goals}
+              onEdit={(goal) => {
+                setSelectedGoal(goal);
+                setShowEditModal(true);
+              }}
+              onDelete={(goal) => {
+                setSelectedGoal(goal);
+                setShowDeleteModal(true);
+              }}
+            />
+          )}
+        </div>
       </motion.div>
 
-      {/* Add */}
+      {/* ===============================
+          Add Goal Modal
+      =============================== */}
 
       <AddGoalModal
         isOpen={showAddModal}
@@ -166,7 +252,9 @@ export default function GoalGroupPage() {
         onSubmit={handleCreateGoal}
       />
 
-      {/* Edit */}
+      {/* ===============================
+          Edit Goal Modal
+      =============================== */}
 
       <EditGoalModal
         isOpen={showEditModal}
@@ -178,7 +266,9 @@ export default function GoalGroupPage() {
         onSubmit={handleUpdateGoal}
       />
 
-      {/* Delete */}
+      {/* ===============================
+          Delete Goal Modal
+      =============================== */}
 
       <DeleteGoalModal
         isOpen={showDeleteModal}

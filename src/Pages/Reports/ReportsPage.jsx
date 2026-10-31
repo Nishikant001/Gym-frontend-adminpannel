@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
@@ -28,6 +28,8 @@ import {getUserStatusCount} from "../../Api/dashboardApi.js"
 
 export default function ReportsPage() {
   const { theme } = useTheme();
+  const hasFetched = useRef(false);
+  const isFetching = useRef(false);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -48,6 +50,9 @@ export default function ReportsPage() {
   });
 
   const fetchReports = async () => {
+     if (isFetching.current) return;
+
+  isFetching.current = true;
     try {
       setLoading(true);
       setError("");
@@ -115,10 +120,14 @@ export default function ReportsPage() {
       );
     } finally {
       setLoading(false);
+      isFetching.current = false;
     }
   };
 
   useEffect(() => {
+    if (hasFetched.current) return;
+
+  hasFetched.current = true;
     fetchReports();
   }, []);
 

@@ -7,6 +7,8 @@ import {
   Plus,
   Trash2,
   ChevronDown,
+  Upload,
+  Image,
 } from "lucide-react";
 
 const WEEK_DAYS = [
@@ -35,6 +37,7 @@ const initialForm = {
   estimatedCalories: "",
   estimatedDuration: "",
   difficulty: "beginner",
+  thumbnail: null,
   days: [],
 };
 
@@ -49,6 +52,7 @@ export default function AddWorkoutModal({
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [openDay, setOpenDay] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState("");
 
   // ==========================================
   // Reset Form
@@ -59,6 +63,7 @@ export default function AddWorkoutModal({
       setFormData(initialForm);
       setErrors({});
       setOpenDay(null);
+      setThumbnailPreview("");
     }
   }, [isOpen]);
 
@@ -77,6 +82,68 @@ export default function AddWorkoutModal({
     setErrors((prev) => ({
       ...prev,
       [name]: "",
+    }));
+  };
+
+  // ==========================================
+  // Thumbnail Change
+  // ==========================================
+
+  const handleThumbnailChange = (e) => {
+    const file = e.target.files?.[0];
+
+    if (!file) return;
+
+    // Only allow image files
+    if (!file.type.startsWith("image/")) {
+      setErrors((prev) => ({
+        ...prev,
+        thumbnail: "Please select a valid image file",
+      }));
+
+      e.target.value = "";
+      return;
+    }
+
+    // Remove previous preview URL
+    if (thumbnailPreview) {
+      URL.revokeObjectURL(thumbnailPreview);
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+
+    setFormData((prev) => ({
+      ...prev,
+      thumbnail: file,
+    }));
+
+    setThumbnailPreview(previewUrl);
+
+    setErrors((prev) => ({
+      ...prev,
+      thumbnail: "",
+    }));
+  };
+
+  // ==========================================
+  // Remove Thumbnail
+  // ==========================================
+
+  const handleRemoveThumbnail = () => {
+    if (thumbnailPreview) {
+      URL.revokeObjectURL(thumbnailPreview);
+    }
+
+    setThumbnailPreview("");
+
+    setFormData((prev) => ({
+      ...prev,
+      thumbnail: null,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      thumbnail: "",
     }));
   };
 
@@ -206,7 +273,7 @@ export default function AddWorkoutModal({
           ),
         };
       }),
-    }))
+    }));
   };
 
   // ==========================================
@@ -287,60 +354,97 @@ export default function AddWorkoutModal({
     try {
       setLoading(true);
 
-      const payload = {
-        goalGroupId: formData.goalGroupId,
+      // ==========================================
+      // FormData for multipart/form-data
+      // ==========================================
 
-        title: formData.title.trim(),
+      const payload = new FormData();
 
-        description:
-          formData.description.trim(),
+      payload.append(
+        "goalGroupId",
+        formData.goalGroupId
+      );
 
-        estimatedCalories: Number(
-          formData.estimatedCalories
-        ),
+      payload.append(
+        "title",
+        formData.title.trim()
+      );
 
-        estimatedDuration: Number(
-          formData.estimatedDuration
-        ),
+      payload.append(
+        "description",
+        formData.description.trim()
+      );
 
-        difficulty: formData.difficulty,
+      payload.append(
+        "estimatedCalories",
+        Number(formData.estimatedCalories)
+      );
 
-        days: formData.days.map((day) => ({
-          day: day.day,
+      payload.append(
+        "estimatedDuration",
+        Number(formData.estimatedDuration)
+      );
 
-          exercises: day.exercises.map(
-            (exercise, index) => ({
-              exerciseId:
-                exercise.exerciseId,
+      payload.append(
+        "difficulty",
+        formData.difficulty
+      );
 
-              sets: Number(exercise.sets),
+      // Thumbnail
+      if (formData.thumbnail) {
+        payload.append(
+          "thumbnail",
+          formData.thumbnail
+        );
+      }
 
-              reps: Number(exercise.reps),
+      // Days
+      payload.append(
+        "days",
+        JSON.stringify(
+          formData.days.map((day) => ({
+            day: day.day,
 
-              durationSeconds: Number(
-                exercise.durationSeconds
-              ),
+            exercises: day.exercises.map(
+              (exercise, index) => ({
+                exerciseId:
+                  exercise.exerciseId,
 
-              restSeconds: Number(
-                exercise.restSeconds
-              ),
+                sets: Number(exercise.sets),
 
-              order: index + 1,
-            })
-          ),
-        })),
-      };
+                reps: Number(exercise.reps),
+
+                durationSeconds: Number(
+                  exercise.durationSeconds
+                ),
+
+                restSeconds: Number(
+                  exercise.restSeconds
+                ),
+
+                order: index + 1,
+              })
+            ),
+          }))
+        )
+      );
 
       console.log(
         "CREATE WORKOUT PAYLOAD:",
-        payload
+        Object.fromEntries(payload.entries())
       );
 
       await onSubmit(payload);
 
+      // Remove preview URL
+      if (thumbnailPreview) {
+        URL.revokeObjectURL(thumbnailPreview);
+      }
+
       setFormData(initialForm);
       setErrors({});
       setOpenDay(null);
+      setThumbnailPreview("");
     } catch (error) {
       console.error(
         "Create workout error:",
@@ -358,9 +462,14 @@ export default function AddWorkoutModal({
   const handleClose = () => {
     if (loading) return;
 
+    if (thumbnailPreview) {
+      URL.revokeObjectURL(thumbnailPreview);
+    }
+
     setFormData(initialForm);
     setErrors({});
     setOpenDay(null);
+    setThumbnailPreview("");
 
     onClose();
   };
@@ -734,6 +843,182 @@ export default function AddWorkoutModal({
                     )}
                   </div>
 
+                  {/* ================================= */}
+                  {/* THUMBNAIL */}
+                  {/* ================================= */}
+
+                  <div className="md:col-span-2">
+                    <label
+                      className="
+                        mb-2
+                        block
+                        text-sm
+                        font-semibold
+                        text-gray-700
+                        dark:text-gray-300
+                      "
+                    >
+                      Workout Thumbnail
+                      <span className="ml-1 text-xs font-normal text-gray-400">
+                        (image)
+                      </span>
+                    </label>
+
+                    {!thumbnailPreview ? (
+                      <label
+                        htmlFor="workout-thumbnail"
+                        className="
+                          flex
+                          min-h-[180px]
+                          cursor-pointer
+                          flex-col
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border-2
+                          border-dashed
+                          border-gray-300
+                          bg-gray-50
+                          px-6
+                          py-8
+                          text-center
+                          transition
+                          hover:border-[#F96B00]
+                          hover:bg-orange-50
+                          dark:border-slate-700
+                          dark:bg-slate-800
+                          dark:hover:border-[#F96B00]
+                          dark:hover:bg-orange-950/10
+                        "
+                      >
+                        <div
+                          className="
+                            mb-3
+                            flex
+                            h-12
+                            w-12
+                            items-center
+                            justify-center
+                            rounded-xl
+                            bg-gradient-to-r
+                            from-[#C11200]
+                            to-[#F96B00]
+                            text-white
+                          "
+                        >
+                          <Upload size={22} />
+                        </div>
+
+                        <p
+                          className="
+                            text-sm
+                            font-semibold
+                            text-gray-700
+                            dark:text-gray-200
+                          "
+                        >
+                          Click to upload workout thumbnail
+                        </p>
+
+                        <p
+                          className="
+                            mt-1
+                            text-xs
+                            text-gray-500
+                            dark:text-slate-400
+                          "
+                        >
+                          PNG, JPG, JPEG, WEBP or other image
+                        </p>
+
+                        <input
+                          id="workout-thumbnail"
+                          type="file"
+                          accept="image/*"
+                          onChange={
+                            handleThumbnailChange
+                          }
+                          className="hidden"
+                        />
+                      </label>
+                    ) : (
+                      <div
+                        className="
+                          relative
+                          overflow-hidden
+                          rounded-xl
+                          border
+                          border-gray-300
+                          bg-gray-50
+                          dark:border-slate-700
+                          dark:bg-slate-800
+                        "
+                      >
+                        <img
+                          src={thumbnailPreview}
+                          alt="Workout thumbnail preview"
+                          className="
+                            h-56
+                            w-full
+                            object-cover
+                          "
+                        />
+
+                        <div
+                          className="
+                            absolute
+                            inset-x-0
+                            bottom-0
+                            flex
+                            items-center
+                            justify-between
+                            bg-black/60
+                            px-4
+                            py-3
+                            backdrop-blur-sm
+                          "
+                        >
+                          <div className="flex items-center gap-2 text-white">
+                            <Image size={17} />
+
+                            <span className="max-w-[300px] truncate text-sm">
+                              {formData.thumbnail?.name}
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={
+                              handleRemoveThumbnail
+                            }
+                            disabled={loading}
+                            className="
+                              rounded-lg
+                              bg-red-500
+                              px-3
+                              py-1.5
+                              text-xs
+                              font-semibold
+                              text-white
+                              transition
+                              hover:bg-red-600
+                              disabled:cursor-not-allowed
+                              disabled:opacity-50
+                            "
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {errors.thumbnail && (
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.thumbnail}
+                      </p>
+                    )}
+                  </div>
+
                   {/* Estimated Calories */}
 
                   <div>
@@ -837,7 +1122,6 @@ export default function AddWorkoutModal({
                       </p>
                     )}
                   </div>
-
                 </div>
               </div>
 
@@ -921,7 +1205,6 @@ export default function AddWorkoutModal({
 
               {formData.days.length > 0 && (
                 <div className="space-y-4">
-
                   <h3
                     className="
                       text-base
@@ -1062,6 +1345,7 @@ export default function AddWorkoutModal({
                                 <Plus
                                   size={17}
                                 />
+
                                 Add Exercise
                               </button>
 
@@ -1507,7 +1791,6 @@ export default function AddWorkoutModal({
                   )}
                 </div>
               )}
-
             </div>
 
             {/* ================================= */}

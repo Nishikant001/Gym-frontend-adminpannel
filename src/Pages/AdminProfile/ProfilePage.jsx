@@ -108,15 +108,15 @@ const ProfilePage = () => {
         ]);
 
 
-        console.log(
-          "Branches:",
-          branchesRes
-        );
+        // console.log(
+        //   "Branches:",
+        //   branchesRes
+        // );
 
-        console.log(
-          "Users:",
-          usersRes
-        );
+        // console.log(
+        //   "Users:",
+        //   usersRes
+        // );
 
 
         /*

@@ -18,8 +18,10 @@ import DietPage from "./Pages/Diet Plan/DietPage.jsx";
 import BannerPage from "./Pages/Banners/BannerPage.jsx";
 import ReportsPage from "./Pages/Reports/ReportsPage.jsx"
 import OffersPage from "./Pages/Offers/OffersPage.jsx";
-import CartPage from "./Pages/Cart/CartPage.jsx";
+// import CartPage from "./Pages/Cart/CartPage.jsx";
 import ExercisePage from "./Pages/Exercise/ExercisePage.jsx"
+import OrderPage from "./Pages/Cart/OrderPage.jsx";
+import LandingPage from "./Pages/Landing/LandingPage.jsx";
 
 
 
@@ -29,6 +31,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* PUBLIC LANDING PAGE */}
+        <Route path="/" element={<LandingPage />} />
+
         {/* LOGIN PAGE */}
         <Route
           path="/login"
@@ -46,7 +51,7 @@ function App() {
         >
           {/* CHILD ROUTES */}
           <Route
-            index
+            path="dashboard"
             element={<DashboardPage />}
           />
 
@@ -86,7 +91,7 @@ function App() {
           <Route path="banners" element={<BannerPage />} />
           <Route path="reports" element={<ReportsPage />} />
           <Route path="offers" element={<OffersPage />} />
-          <Route path="carts" element={<CartPage />} />
+          <Route path="orders" element={<OrderPage />} />
           <Route path="exercise" element={<ExercisePage />} />
 
         </Route>

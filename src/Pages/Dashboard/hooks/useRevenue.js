@@ -14,7 +14,7 @@ const useRevenue = () => {
 
       const res = await getRevenueAnalytics();
 
-      console.log("Revenue API:", res);
+      // console.log("Revenue API:", res);
 
       if (res.success) {
         setRevenueData(res.data);
