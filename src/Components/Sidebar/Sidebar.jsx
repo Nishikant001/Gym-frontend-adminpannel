@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import logoIcon from "../../assets/landing/logo-icon-original.png";
 
 import {
   ChevronLeft,
@@ -119,7 +120,7 @@ const Sidebar = ({
     "
             >
               <img
-                src="https://res.cloudinary.com/dl58sdjnk/image/upload/v1781975759/ChatGPT_Image_Jun_20_2026_10_45_43_PM_yvuejo.png"
+                src={logoIcon}
                 alt="logo"
                 className="
         w-14 h-14

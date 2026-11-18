@@ -22,6 +22,16 @@ import OffersPage from "./Pages/Offers/OffersPage.jsx";
 import ExercisePage from "./Pages/Exercise/ExercisePage.jsx"
 import OrderPage from "./Pages/Cart/OrderPage.jsx";
 import LandingPage from "./Pages/Landing/LandingPage.jsx";
+import SiteLayout from "./Pages/Website/components/SiteLayout.jsx";
+import AboutPage from "./Pages/Website/pages/AboutPage.jsx";
+import ServicesPage from "./Pages/Website/pages/ServicesPage.jsx";
+import ServiceDetailPage from "./Pages/Website/pages/ServiceDetailPage.jsx";
+import WellnessPage from "./Pages/Website/pages/WellnessPage.jsx";
+import MembershipPage from "./Pages/Website/pages/MembershipPage.jsx";
+import ContactPage from "./Pages/Website/pages/ContactPage.jsx";
+import BranchDetailPage from "./Pages/Website/pages/BranchDetailPage.jsx";
+import TourPage from "./Pages/Website/pages/TourPage.jsx";
+import LegalPage from "./Pages/Website/pages/LegalPage.jsx";
 
 
 
@@ -32,7 +42,19 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* PUBLIC LANDING PAGE */}
-        <Route path="/" element={<LandingPage />} />
+        <Route element={<SiteLayout />}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/wellness-recovery" element={<WellnessPage />} />
+          <Route path="/membership" element={<MembershipPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/branches/:slug" element={<BranchDetailPage />} />
+          <Route path="/book-gym-tour" element={<TourPage />} />
+          <Route path="/privacy-policy" element={<LegalPage kind="privacy" />} />
+          <Route path="/terms" element={<LegalPage kind="terms" />} />
+        </Route>
 
         {/* LOGIN PAGE */}
         <Route

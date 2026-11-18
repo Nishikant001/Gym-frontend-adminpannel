@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { loginAdmin } from "../../Api/authApi.js";
 import { logoutAdmin } from "../../Api/authApi.js";
 
-import logo from "../../Assets/logo.png"
+import logo from "../../assets/logo.png"
 
 import {
   Mail,
