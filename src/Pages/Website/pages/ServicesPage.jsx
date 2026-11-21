@@ -26,10 +26,10 @@ const ServicesPage = () => {
             const Icon = ICONS[s.icon];
             return (
               <Card key={s.slug} className="flex flex-col">
-                <Icon className="mb-4 text-[#ff1b1b]" size={40} />
-                <h3 className="mb-2 font-['Anton'] text-2xl uppercase tracking-[2px]">{s.title}</h3>
+                <Icon className="mb-4 text-[#e11d27]" size={40} />
+                <h3 className="mb-2 font-heading text-2xl uppercase tracking-[1px]">{s.title}</h3>
                 <p className="mb-5 flex-1 text-sm font-light leading-relaxed text-neutral-300">{s.short}</p>
-                <Link to={`/services/${s.slug}`} className="inline-flex items-center gap-2 font-['Bebas_Neue'] text-lg tracking-[3px] text-[#ff1b1b] hover:text-white">
+                <Link to={`/services/${s.slug}`} className="inline-flex items-center gap-2 font-label text-lg tracking-[1px] text-[#e11d27] hover:text-white">
                   Learn More <ArrowRight size={16} />
                 </Link>
               </Card>
@@ -48,8 +48,8 @@ const ServicesPage = () => {
             ["Progress", "Train with guidance and track your progress with support."],
           ].map(([t, d], i) => (
             <Card key={t}>
-              <div className="font-['Anton'] text-5xl text-[#ff1b1b]/30">0{i + 1}</div>
-              <h3 className="mt-2 mb-2 font-['Anton'] text-xl uppercase tracking-[2px]">{t}</h3>
+              <div className="font-heading text-5xl text-[#e11d27]/30">0{i + 1}</div>
+              <h3 className="mt-2 mb-2 font-heading text-xl uppercase tracking-[1px]">{t}</h3>
               <p className="text-sm font-light leading-relaxed text-neutral-300">{d}</p>
             </Card>
           ))}
@@ -57,9 +57,9 @@ const ServicesPage = () => {
       </Section>
 
       <Section>
-        <div className="grid items-center gap-8 border border-[#ff1b1b]/30 bg-[#0d0d0d] p-8 sm:p-12 lg:grid-cols-[1fr_auto]">
+        <div className="grid items-center gap-8 border border-[#e11d27]/30 bg-[#0d0d0d] p-8 sm:p-12 lg:grid-cols-[1fr_auto]">
           <div>
-            <h3 className="font-['Anton'] text-3xl uppercase tracking-[2px]">Looking For <span className="text-[#ff1b1b]">Recovery & Wellness?</span></h3>
+            <h3 className="font-heading text-3xl uppercase tracking-[1px]">Looking For <span className="text-[#e11d27]">Recovery & Wellness?</span></h3>
             <p className="mt-3 max-w-2xl font-light leading-relaxed text-neutral-300">Sauna, red-light therapy, cold plunge, massage and spine care are available at BFD Enhanced, where available.</p>
           </div>
           <Button to="/wellness-recovery" variant="outline">Explore Wellness</Button>

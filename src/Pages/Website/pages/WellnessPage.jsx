@@ -11,9 +11,9 @@ export const Faq = ({ items }) => {
     <div className="mx-auto max-w-3xl divide-y divide-white/10 border border-white/10 bg-[#0d0d0d]">
       {items.map((f, i) => (
         <div key={f.q}>
-          <button onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-['Bebas_Neue'] text-xl tracking-[2px] hover:text-[#ff1b1b]">
+          <button onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-label text-xl tracking-[1px] hover:text-[#e11d27]">
             {f.q}
-            <ChevronDown size={20} className={`shrink-0 transition ${open === i ? "rotate-180 text-[#ff1b1b]" : ""}`} />
+            <ChevronDown size={20} className={`shrink-0 transition ${open === i ? "rotate-180 text-[#e11d27]" : ""}`} />
           </button>
           {open === i && <p className="px-6 pb-5 text-sm font-light leading-relaxed text-neutral-300">{f.a}</p>}
         </div>
@@ -46,10 +46,10 @@ const WellnessPage = () => {
               <p className="text-sm text-neutral-400">Availability of each service, operating protocols and descriptions are confirmed by our operations team.</p>
             </div>
           </div>
-          <div className="flex items-center justify-center border border-[#ff1b1b]/30 bg-gradient-to-br from-[#1a0000] to-[#0a0a0a] p-12 text-center">
+          <div className="flex items-center justify-center border border-[#e11d27]/30 bg-gradient-to-br from-[#1a0000] to-[#0a0a0a] p-12 text-center">
             <div>
-              <Leaf className="mx-auto mb-4 text-[#ff1b1b]" size={64} />
-              <p className="font-['Anton'] text-3xl uppercase tracking-[3px]">Recover. Reset. <span className="text-[#ff1b1b]">Repeat.</span></p>
+              <Leaf className="mx-auto mb-4 text-[#e11d27]" size={64} />
+              <p className="font-heading text-3xl uppercase tracking-[1px]">Recover. Reset. <span className="text-[#e11d27]">Repeat.</span></p>
             </div>
           </div>
         </div>
@@ -62,8 +62,8 @@ const WellnessPage = () => {
             const Icon = ICONS[w.icon];
             return (
               <Card key={w.id} id={w.id}>
-                <Icon className="mb-4 text-[#ff1b1b]" size={40} />
-                <h3 className="mb-2 font-['Anton'] text-2xl uppercase tracking-[2px]">{w.title}</h3>
+                <Icon className="mb-4 text-[#e11d27]" size={40} />
+                <h3 className="mb-2 font-heading text-2xl uppercase tracking-[1px]">{w.title}</h3>
                 <p className="text-sm font-light leading-relaxed text-neutral-300">{w.text}</p>
               </Card>
             );
@@ -79,7 +79,7 @@ const WellnessPage = () => {
             ["Guided By Our Team", "Staff explain how each facility works so you can use it comfortably and responsibly."],
             ["Part Of The Flagship", "Located inside BFD Enhanced so training and recovery happen under one roof."],
           ].map(([t, d]) => (
-            <Card key={t}><h3 className="mb-2 font-['Anton'] text-xl uppercase tracking-[2px]">{t}</h3><p className="text-sm font-light leading-relaxed text-neutral-300">{d}</p></Card>
+            <Card key={t}><h3 className="mb-2 font-heading text-xl uppercase tracking-[1px]">{t}</h3><p className="text-sm font-light leading-relaxed text-neutral-300">{d}</p></Card>
           ))}
         </div>
         <p className="mx-auto mt-8 max-w-3xl border border-white/10 bg-[#0d0d0d] p-5 text-center text-xs font-light leading-relaxed text-neutral-400">

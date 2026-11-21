@@ -33,7 +33,7 @@ const LegalPage = ({ kind }) => {
         <div className="mx-auto max-w-3xl space-y-8">
           {d.sections.map(([h, t]) => (
             <div key={h}>
-              <h2 className="mb-2 font-['Anton'] text-2xl uppercase tracking-[2px]">{h}</h2>
+              <h2 className="mb-2 font-heading text-2xl uppercase tracking-[1px]">{h}</h2>
               <p className="font-light leading-relaxed text-neutral-300">{t}</p>
             </div>
           ))}

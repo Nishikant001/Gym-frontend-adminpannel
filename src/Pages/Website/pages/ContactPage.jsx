@@ -5,7 +5,7 @@ import { InstagramIcon, FacebookIcon, WhatsAppIcon } from "../components/Icons";
 import { BRANCHES, CONTACT, telHref, waHref } from "../siteConfig";
 
 const Row = ({ icon: Icon, children }) => (
-  <p className="flex gap-3 text-sm font-light leading-relaxed text-neutral-300"><Icon size={18} className="mt-0.5 shrink-0 text-[#ff1b1b]" />{children}</p>
+  <p className="flex gap-3 text-sm font-light leading-relaxed text-neutral-300"><Icon size={18} className="mt-0.5 shrink-0 text-[#e11d27]" />{children}</p>
 );
 
 const ContactPage = () => (
@@ -30,10 +30,10 @@ const ContactPage = () => (
               <iframe title={`${b.short} map`} src={b.mapsEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="h-full w-full grayscale invert-[.9] contrast-[.9]" />
             </div>
             <div className="space-y-4 p-7">
-              <p className="font-['Bebas_Neue'] text-sm tracking-[4px] text-[#ff1b1b]">{b.badge}</p>
-              <h3 className="font-['Anton'] text-3xl uppercase tracking-[2px]">{b.short}</h3>
+              <p className="font-label text-sm tracking-[2px] text-[#e11d27]">{b.badge}</p>
+              <h3 className="font-heading text-3xl uppercase tracking-[1px]">{b.short}</h3>
               <Row icon={MapPin}>{b.address}</Row>
-              <Row icon={Phone}>{b.phone ? <a href={telHref(b.phone)} className="hover:text-[#ff1b1b]">{b.phone}</a> : "Phone number coming soon"}</Row>
+              <Row icon={Phone}>{b.phone ? <a href={telHref(b.phone)} className="hover:text-[#e11d27]">{b.phone}</a> : "Phone number coming soon"}</Row>
               <Row icon={Clock}>{b.hours || "Opening hours coming soon"}</Row>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button href={b.mapsUrl} external variant="outline"><Navigation size={16} /> Directions</Button>
@@ -52,15 +52,15 @@ const ContactPage = () => (
         <div>
           <SectionTitle center={false} eyebrow="Get In Touch" title="Send Us An" accent="Enquiry" text="Fill in the form and the designated team will get back to you. Choose the branch you're interested in so it reaches the right people." />
           <div className="space-y-4">
-            <Row icon={Mail}>{CONTACT.email ? <a href={`mailto:${CONTACT.email}`} className="hover:text-[#ff1b1b]">{CONTACT.email}</a> : "Business email coming soon"}</Row>
+            <Row icon={Mail}>{CONTACT.email ? <a href={`mailto:${CONTACT.email}`} className="hover:text-[#e11d27]">{CONTACT.email}</a> : "Business email coming soon"}</Row>
             <div className="flex gap-3 pt-3">
-              {CONTACT.instagram && <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" title="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#ff1b1b] text-[#ff1b1b] transition hover:bg-[#ff1b1b] hover:text-black"><InstagramIcon /></a>}
-              {CONTACT.facebook && <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" title="Facebook" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#ff1b1b] text-[#ff1b1b] transition hover:bg-[#ff1b1b] hover:text-black"><FacebookIcon /></a>}
+              {CONTACT.instagram && <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" title="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#e11d27] text-[#e11d27] transition hover:bg-[#e11d27] hover:text-white"><InstagramIcon /></a>}
+              {CONTACT.facebook && <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" title="Facebook" className="flex h-11 w-11 items-center justify-center rounded-full border border-[#e11d27] text-[#e11d27] transition hover:bg-[#e11d27] hover:text-white"><FacebookIcon /></a>}
             </div>
-            <p className="pt-2 font-['Bebas_Neue'] tracking-[4px] text-neutral-400">@bharatfiitnessden</p>
+            <p className="pt-2 font-label tracking-[2px] text-neutral-400">@bharatfiitnessden</p>
           </div>
         </div>
-        <div className="border border-[#ff1b1b]/30 bg-[#0d0d0d] p-6 sm:p-9">
+        <div className="border border-[#e11d27]/30 bg-[#0d0d0d] p-6 sm:p-9">
           <EnquiryForm general />
         </div>
       </div>

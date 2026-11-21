@@ -7,12 +7,12 @@ import { FORM_OPTIONS } from "../siteConfig";
 const MOBILE_RE = /^(?:\+?91[\s-]?)?[6-9]\d{9}$/;
 
 const inputCls =
-  "w-full border border-white/15 bg-[#0a0a0a] px-4 py-3 text-sm font-light tracking-wide text-white outline-none transition placeholder:text-neutral-600 focus:border-[#ff1b1b]";
+  "w-full border border-white/15 bg-[#0a0a0a] px-4 py-3 text-sm font-light tracking-wide text-white outline-none transition placeholder:text-neutral-600 focus:border-[#e11d27]";
 
 const Field = ({ label, required, error, children }) => (
   <label className="block">
-    <span className="mb-1.5 block font-['Bebas_Neue'] text-sm uppercase tracking-[3px] text-neutral-300">
-      {label} {required && <span className="text-[#ff1b1b]">*</span>}
+    <span className="mb-1.5 block font-label text-sm uppercase tracking-[1px] text-neutral-300">
+      {label} {required && <span className="text-[#e11d27]">*</span>}
     </span>
     {children}
     {error && <span className="mt-1 block text-xs text-[#ff5a5a]">{error}</span>}
@@ -30,11 +30,11 @@ const Select = ({ value, onChange, options, placeholder = "Select" }) => (
 
 const Success = ({ title, text, onDone }) => (
   <div className="py-10 text-center">
-    <CheckCircle2 className="mx-auto mb-4 text-[#ff1b1b]" size={56} />
-    <h3 className="font-['Anton'] text-3xl uppercase tracking-[2px]">{title}</h3>
+    <CheckCircle2 className="mx-auto mb-4 text-[#e11d27]" size={56} />
+    <h3 className="font-heading text-3xl uppercase tracking-[1px]">{title}</h3>
     <p className="mx-auto mt-3 max-w-sm text-sm font-light leading-relaxed text-neutral-300">{text}</p>
     {onDone && (
-      <button onClick={onDone} className="mt-6 border border-[#ff1b1b] px-7 py-2.5 font-['Bebas_Neue'] tracking-[3px] hover:bg-[#ff1b1b] hover:text-black">
+      <button onClick={onDone} className="mt-6 border border-[#e11d27] px-7 py-2.5 font-label tracking-[1px] hover:bg-[#e11d27] hover:text-white">
         Close
       </button>
     )}
@@ -45,7 +45,7 @@ const Submit = ({ loading, children }) => (
   <button
     type="submit"
     disabled={loading}
-    className="w-full bg-[#ff1b1b] px-7 py-3.5 font-['Bebas_Neue'] text-lg tracking-[4px] text-black transition hover:bg-[#ffce00] disabled:opacity-60"
+    className="w-full bg-[#e11d27] px-7 py-3.5 font-label text-lg tracking-[2px] text-white transition hover:bg-[#b9151d] disabled:opacity-60"
     style={{ clipPath: "polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)" }}
   >
     {loading ? "Sending..." : children}
@@ -161,7 +161,7 @@ export const EnquiryForm = ({ defaultBranch = "", defaultMembership = "", genera
           type="checkbox"
           checked={f.consent}
           onChange={(e) => set("consent")(e.target.checked)}
-          className="mt-1 h-4 w-4 accent-[#ff1b1b]"
+          className="mt-1 h-4 w-4 accent-[#e11d27]"
         />
         I allow Bharat Fiitness Den to contact me about this enquiry and relevant membership information.
       </label>
@@ -243,7 +243,7 @@ export const TourForm = ({ defaultBranch = "", onDone }) => {
         <textarea rows={3} className={inputCls} value={f.interests} onChange={inp("interests")} placeholder="Anything you'd like to see or ask?" />
       </Field>
       <label className="flex items-start gap-3 text-sm font-light leading-snug text-neutral-300">
-        <input type="checkbox" checked={f.consent} onChange={(e) => set("consent")(e.target.checked)} className="mt-1 h-4 w-4 accent-[#ff1b1b]" />
+        <input type="checkbox" checked={f.consent} onChange={(e) => set("consent")(e.target.checked)} className="mt-1 h-4 w-4 accent-[#e11d27]" />
         I agree to be contacted to confirm my visit.
       </label>
       {err.consent && <p className="-mt-3 text-xs text-[#ff5a5a]">{err.consent}</p>}

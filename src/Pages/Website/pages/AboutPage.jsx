@@ -43,8 +43,8 @@ const AboutPage = () => {
               ["130+", "Advanced machines at Enhanced"],
             ].map(([n, l]) => (
               <div key={l} className="border border-white/10 bg-[#0d0d0d] p-6 text-center">
-                <div className="font-['Anton'] text-4xl tracking-[2px] text-[#ff1b1b] sm:text-5xl">{n}</div>
-                <div className="mt-2 text-xs font-light uppercase tracking-[2px] text-neutral-400">{l}</div>
+                <div className="font-heading text-4xl tracking-[1px] text-[#e11d27] sm:text-5xl">{n}</div>
+                <div className="mt-2 text-xs font-light uppercase tracking-[1px] text-neutral-400">{l}</div>
               </div>
             ))}
           </div>
@@ -56,15 +56,15 @@ const AboutPage = () => {
         <SectionTitle eyebrow="Purpose" title="Our Vision &" accent="Mission" />
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
-            <Eye className="mb-4 text-[#ff1b1b]" size={38} />
-            <h3 className="mb-3 font-['Anton'] text-2xl uppercase tracking-[2px]">Our Vision</h3>
+            <Eye className="mb-4 text-[#e11d27]" size={38} />
+            <h3 className="mb-3 font-heading text-2xl uppercase tracking-[1px]">Our Vision</h3>
             <p className="font-light leading-relaxed tracking-wide text-neutral-300">
               To be Odisha&apos;s most trusted fitness brand — a place where people of every age and background discover strength, discipline and confidence, and where a stronger community is built one member at a time.
             </p>
           </Card>
           <Card>
-            <Target className="mb-4 text-[#ff1b1b]" size={38} />
-            <h3 className="mb-3 font-['Anton'] text-2xl uppercase tracking-[2px]">Our Mission</h3>
+            <Target className="mb-4 text-[#e11d27]" size={38} />
+            <h3 className="mb-3 font-heading text-2xl uppercase tracking-[1px]">Our Mission</h3>
             <p className="font-light leading-relaxed tracking-wide text-neutral-300">
               To deliver a premium, honest and results-focused fitness experience — through modern equipment, certified and professional trainers, welcoming spaces and complete wellness support — at every BFD branch.
             </p>
@@ -75,11 +75,11 @@ const AboutPage = () => {
       {/* JOURNEY */}
       <Section>
         <SectionTitle eyebrow="Our Journey" title="From Jaydev Vihar To" accent="BFD Enhanced" text="Every milestone has been shaped by our members and our commitment to doing fitness better." />
-        <div className="relative mx-auto max-w-4xl border-l-2 border-[#ff1b1b]/40 pl-8 sm:pl-12">
+        <div className="relative mx-auto max-w-4xl border-l-2 border-[#e11d27]/40 pl-8 sm:pl-12">
           {JOURNEY.map((j, i) => (
             <div key={j.title} className="relative mb-12 last:mb-0">
-              <span className="absolute -left-[46px] top-0 flex h-7 w-7 items-center justify-center rounded-full bg-[#ff1b1b] font-['Bebas_Neue'] text-sm text-black sm:-left-[62px]">{i + 1}</span>
-              <h3 className="font-['Anton'] text-2xl uppercase tracking-[2px]">{j.title}</h3>
+              <span className="absolute -left-[46px] top-0 flex h-7 w-7 items-center justify-center rounded-full bg-[#e11d27] font-label text-sm text-white sm:-left-[62px]">{i + 1}</span>
+              <h3 className="font-heading text-2xl uppercase tracking-[1px]">{j.title}</h3>
               <p className="mt-2 font-light leading-relaxed tracking-wide text-neutral-300">{j.text}</p>
             </div>
           ))}
@@ -92,11 +92,11 @@ const AboutPage = () => {
         <div className="grid gap-6 md:grid-cols-2">
           {BRANCHES.map((b) => (
             <Card key={b.slug}>
-              <p className="font-['Bebas_Neue'] text-sm tracking-[4px] text-[#ff1b1b]">{b.badge}</p>
-              <h3 className="mt-1 font-['Anton'] text-3xl uppercase tracking-[2px]">{b.short}</h3>
+              <p className="font-label text-sm tracking-[2px] text-[#e11d27]">{b.badge}</p>
+              <h3 className="mt-1 font-heading text-3xl uppercase tracking-[1px]">{b.short}</h3>
               <p className="mt-1 text-sm text-neutral-400">{b.area}</p>
               <p className="my-4 font-light leading-relaxed text-neutral-300">{b.description}</p>
-              <Link to={`/branches/${b.slug}`} className="font-['Bebas_Neue'] text-lg tracking-[3px] text-[#ff1b1b] hover:text-white">Explore {b.short} →</Link>
+              <Link to={`/branches/${b.slug}`} className="font-label text-lg tracking-[1px] text-[#e11d27] hover:text-white">Explore {b.short} →</Link>
             </Card>
           ))}
         </div>
@@ -108,8 +108,8 @@ const AboutPage = () => {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PHILOSOPHY.map((p, i) => (
             <Card key={p.title}>
-              <div className="mb-3 font-['Anton'] text-5xl text-[#ff1b1b]/30">0{i + 1}</div>
-              <h3 className="mb-2 font-['Anton'] text-2xl uppercase tracking-[2px]">{p.title}</h3>
+              <div className="mb-3 font-heading text-5xl text-[#e11d27]/30">0{i + 1}</div>
+              <h3 className="mb-2 font-heading text-2xl uppercase tracking-[1px]">{p.title}</h3>
               <p className="text-sm font-light leading-relaxed text-neutral-300">{p.text}</p>
             </Card>
           ))}
@@ -126,8 +126,8 @@ const AboutPage = () => {
             [Users, "Real Community", "A respectful, motivating environment where every member belongs."],
           ].map(([Icon, t, d]) => (
             <Card key={t}>
-              <Icon className="mb-4 text-[#ff1b1b]" size={36} />
-              <h3 className="mb-2 font-['Anton'] text-xl uppercase tracking-[2px]">{t}</h3>
+              <Icon className="mb-4 text-[#e11d27]" size={36} />
+              <h3 className="mb-2 font-heading text-xl uppercase tracking-[1px]">{t}</h3>
               <p className="text-sm font-light leading-relaxed text-neutral-300">{d}</p>
             </Card>
           ))}
@@ -137,8 +137,8 @@ const AboutPage = () => {
       {/* TEAM */}
       <Section>
         <SectionTitle eyebrow="Our People" title="Leadership & Trainer" accent="Team" />
-        <div className="mx-auto max-w-3xl border border-dashed border-[#ff1b1b]/40 bg-[#0d0d0d] p-8 text-center">
-          <Users className="mx-auto mb-4 text-[#ff1b1b]" size={42} />
+        <div className="mx-auto max-w-3xl border border-dashed border-[#e11d27]/40 bg-[#0d0d0d] p-8 text-center">
+          <Users className="mx-auto mb-4 text-[#e11d27]" size={42} />
           <p className="font-light leading-relaxed text-neutral-300">
             Our leadership, management and certified trainer team will be introduced here. Profiles are published only after names, photos and credentials are approved. Meet the team in person — book a gym tour at either branch.
           </p>
@@ -155,7 +155,7 @@ const AboutPage = () => {
             "24,000+ sq. ft. flagship facility with 130+ machines and 36+ Panatta stations",
             "Membership options from 1 month to 1 year",
           ].map((t) => (
-            <Card key={t}><Trophy className="mb-3 text-[#ff1b1b]" size={32} /><p className="font-light leading-relaxed text-neutral-200">{t}</p></Card>
+            <Card key={t}><Trophy className="mb-3 text-[#e11d27]" size={32} /><p className="font-light leading-relaxed text-neutral-200">{t}</p></Card>
           ))}
         </div>
         <p className="mt-6 text-center text-xs font-light text-neutral-500">More member milestones and achievements will be added once verified.</p>

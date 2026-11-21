@@ -51,3 +51,31 @@ body {
 .input{
     @apply w-full rounded-xl border border-gray-300 dark:border-[#1B2440] bg-white dark:bg-[#060816] px-4 py-3 outline-none;
 }
+
+/* ============ PUBLIC WEBSITE TYPOGRAPHY (admin panel isko use nahi karta) ============ */
+@theme {
+  --font-sans-site: "Inter", system-ui, sans-serif;
+  --font-display-site: "Montserrat", "Inter", sans-serif;
+}
+
+@utility font-heading {
+  font-family: var(--font-display-site);
+  font-style: italic;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@utility font-label {
+  font-family: var(--font-display-site);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@utility font-body {
+  font-family: var(--font-sans-site);
+}
+
+@keyframes bfd-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

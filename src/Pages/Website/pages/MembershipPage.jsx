@@ -30,9 +30,9 @@ const MembershipPage = () => {
             <button
               key={b.slug}
               onClick={() => setBranch(b.short)}
-              className={`flex-1 border p-5 text-left transition ${branch === b.short ? "border-[#ff1b1b] bg-[#ff1b1b]/10" : "border-white/15 bg-[#0d0d0d] hover:border-[#ff1b1b]/50"}`}
+              className={`flex-1 border p-5 text-left transition ${branch === b.short ? "border-[#e11d27] bg-[#e11d27]/10" : "border-white/15 bg-[#0d0d0d] hover:border-[#e11d27]/50"}`}
             >
-              <span className="block font-['Bebas_Neue'] text-2xl tracking-[3px]">{b.short}</span>
+              <span className="block font-label text-2xl tracking-[1px]">{b.short}</span>
               <span className="text-xs font-light text-neutral-400">{b.sqft} sq. ft. • {b.badge}</span>
             </button>
           ))}
@@ -41,18 +41,18 @@ const MembershipPage = () => {
         <SectionTitle eyebrow="Step 2" title="Choose Your" accent="Plan Duration" text={`Plans at ${active.short}. Prices will be shared by the branch team on enquiry.`} />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PLANS.map((p) => (
-            <div key={p.id} className={`relative flex flex-col border bg-[#0d0d0d] p-7 transition hover:-translate-y-1 ${p.popular || p.best ? "border-[#ff1b1b] shadow-[0_0_30px_rgba(255,27,27,0.2)]" : "border-white/10"}`}>
+            <div key={p.id} className={`relative flex flex-col border bg-[#0d0d0d] p-7 transition hover:-translate-y-1 ${p.popular || p.best ? "border-[#e11d27] shadow-[0_0_30px_rgba(255,27,27,0.2)]" : "border-white/10"}`}>
               {(p.popular || p.best) && (
-                <span className="absolute -top-3 left-6 bg-[#ff1b1b] px-3 py-0.5 font-['Bebas_Neue'] text-sm tracking-[3px] text-black">{p.best ? "Best Value" : "Popular"}</span>
+                <span className="absolute -top-3 left-6 bg-[#e11d27] px-3 py-0.5 font-label text-sm tracking-[1px] text-white">{p.best ? "Best Value" : "Popular"}</span>
               )}
-              <h3 className="font-['Anton'] text-3xl uppercase tracking-[2px]">{p.label}</h3>
+              <h3 className="font-heading text-3xl uppercase tracking-[1px]">{p.label}</h3>
               <p className="mt-1 mb-5 text-sm font-light text-neutral-400">{p.note}</p>
               <div className="mb-5 border-y border-white/10 py-4">
-                <p className="font-['Bebas_Neue'] text-xl tracking-[3px] text-[#ff1b1b]">Price on enquiry</p>
+                <p className="font-label text-xl tracking-[1px] text-[#e11d27]">Price on enquiry</p>
                 <p className="text-xs font-light text-neutral-500">Validity: {p.months} month{p.months > 1 ? "s" : ""}</p>
               </div>
               <ul className="mb-6 flex-1 space-y-2 text-sm font-light text-neutral-300">
-                {PLAN_INCLUSIONS.slice(0, 3).map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#ff1b1b]" />{i}</li>)}
+                {PLAN_INCLUSIONS.slice(0, 3).map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#e11d27]" />{i}</li>)}
               </ul>
               <Button onClick={() => openEnquiry(branch, p.label.replace("Months", "months").replace("Month", "month"))} className="w-full">Enquire</Button>
             </div>
@@ -63,24 +63,24 @@ const MembershipPage = () => {
       <Section alt>
         <div className="grid gap-6 md:grid-cols-3">
           <Card>
-            <h3 className="mb-4 font-['Bebas_Neue'] text-2xl tracking-[4px] text-[#ff1b1b]">Inclusions</h3>
+            <h3 className="mb-4 font-label text-2xl tracking-[2px] text-[#e11d27]">Inclusions</h3>
             <ul className="space-y-3 text-sm font-light text-neutral-300">
-              {PLAN_INCLUSIONS.map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#ff1b1b]" />{i}</li>)}
+              {PLAN_INCLUSIONS.map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#e11d27]" />{i}</li>)}
             </ul>
           </Card>
           <Card>
-            <h3 className="mb-4 font-['Bebas_Neue'] text-2xl tracking-[4px] text-[#ff1b1b]">Optional Add-ons</h3>
+            <h3 className="mb-4 font-label text-2xl tracking-[2px] text-[#e11d27]">Optional Add-ons</h3>
             <ul className="space-y-3 text-sm font-light text-neutral-300">
-              {PLAN_ADDONS.map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#ff1b1b]" />{i}</li>)}
+              {PLAN_ADDONS.map((i) => <li key={i} className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#e11d27]" />{i}</li>)}
             </ul>
             <p className="mt-4 text-xs text-neutral-500">Only where offered at the selected branch.</p>
           </Card>
           <Card>
-            <h3 className="mb-4 font-['Bebas_Neue'] text-2xl tracking-[4px] text-[#ff1b1b]">Exclusions & Terms</h3>
+            <h3 className="mb-4 font-label text-2xl tracking-[2px] text-[#e11d27]">Exclusions & Terms</h3>
             <ul className="space-y-3 text-sm font-light text-neutral-300">
               <li className="flex gap-2"><XIcon size={16} className="mt-0.5 shrink-0 text-neutral-500" />Add-ons are not included unless stated</li>
               <li className="flex gap-2"><XIcon size={16} className="mt-0.5 shrink-0 text-neutral-500" />Facilities vary by branch</li>
-              <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#ff1b1b]" />Final terms confirmed by the branch team</li>
+              <li className="flex gap-2"><Check size={16} className="mt-0.5 shrink-0 text-[#e11d27]" />Final terms confirmed by the branch team</li>
             </ul>
           </Card>
         </div>
@@ -91,12 +91,12 @@ const MembershipPage = () => {
           <div>
             <SectionTitle center={false} eyebrow="Step 3" title="Send Your" accent="Enquiry" text="Tell us a little about your goals and our team will reach out with plan details, pricing and a tour." />
             <ul className="space-y-3 font-light text-neutral-300">
-              <li className="flex gap-2"><Check size={18} className="text-[#ff1b1b]" />No obligation – just a conversation</li>
-              <li className="flex gap-2"><Check size={18} className="text-[#ff1b1b]" />Response on your preferred contact mode</li>
-              <li className="flex gap-2"><Check size={18} className="text-[#ff1b1b]" />Final terms confirmed by the branch team</li>
+              <li className="flex gap-2"><Check size={18} className="text-[#e11d27]" />No obligation – just a conversation</li>
+              <li className="flex gap-2"><Check size={18} className="text-[#e11d27]" />Response on your preferred contact mode</li>
+              <li className="flex gap-2"><Check size={18} className="text-[#e11d27]" />Final terms confirmed by the branch team</li>
             </ul>
           </div>
-          <div className="border border-[#ff1b1b]/30 bg-[#0d0d0d] p-6 sm:p-9">
+          <div className="border border-[#e11d27]/30 bg-[#0d0d0d] p-6 sm:p-9">
             <EnquiryForm key={branch} defaultBranch={branch} />
           </div>
         </div>

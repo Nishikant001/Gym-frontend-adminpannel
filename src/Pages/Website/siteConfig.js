@@ -20,9 +20,9 @@ export const BRAND = {
 // ---------- CONTACT (TODO: asli details daalein) ----------
 export const CONTACT = {
   email: "", // TODO e.g. info@bharatfitnessden.com
-  whatsapp: "", // TODO digits only with country code e.g. 919XXXXXXXXX
-  instagram: "https://www.instagram.com/bharatfiitnessden", // handle brief/landing se (@bharatfiitnessden)
-  facebook: "", // TODO
+  whatsapp: "+91 8339905571", // TODO digits only with country code e.g. 919XXXXXXXXX
+  instagram: "https://www.instagram.com/bharatfiitnessden?cnvx=aXliZXBvNmdhdHV6", // handle brief/landing se (@bharatfiitnessden)
+  facebook: "https://www.facebook.com/share/1HfRWw4tRz/", // TODO
   youtube: "", // TODO
 };
 
@@ -45,7 +45,7 @@ export const BRANCHES = [
       "Professional, supportive trainers",
       "Membership options from 1 month to 1 year",
     ],
-    phone: "", // TODO
+    phone: "+91 8339901557", // TODO
     hours: "", // TODO e.g. Mon–Sat 5:30 AM – 10:30 PM
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Bharat+Fiitness+Den+Jaydev+Vihar+Bhubaneswar",
@@ -75,7 +75,7 @@ export const BRANCHES = [
       "36+ Panatta stations",
       "Specialist training & wellness facilities",
     ],
-    phone: "", // TODO
+    phone: "+91 8339905571", // TODO
     hours: "", // TODO
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Bishandayal+Complex+Forest+Park+Road+Bhubaneswar",
@@ -445,3 +445,42 @@ export const waHref = (text = "Hi BFD, I would like to know more about membershi
   CONTACT.whatsapp
     ? `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`
     : "";
+
+// ---------- HOME PAGE (redesign) ----------
+// Counter bar. value = number jo animate hoga, suffix = "+" etc.
+// ⚠️ 5,000+ members figure design se liya gaya hai – publish se pehle confirm karein.
+export const HOME_STATS = [
+  { icon: "Users", value: 5000, suffix: "+", label: "Members", format: true },
+  { icon: "MapPin", value: BRANCHES.length, suffix: "", label: "Branches" },
+  { icon: "Dumbbell", value: 130, suffix: "+", label: "Advanced Equipments", note: "(at BFD Enhanced)" },
+  { icon: "Layers", value: 24000, suffix: "+", label: "Sq. Ft. (Enhanced)", format: true },
+];
+
+export const HOME_FEATURES = [
+  { icon: "Award", label: "World-Class Equipment" },
+  { icon: "UserCheck", label: "Certified Trainers" },
+  { icon: "HeartPulse", label: "Fitness & Wellness" },
+  { icon: "Users", label: "A Strong Fitness Community" },
+];
+
+// Home page ke branch cards ka chhota text (branch data BRANCHES se aata hai)
+export const HOME_BRANCH_CARD = {
+  "jaydev-vihar": {
+    text: "A complete fitness hub with modern equipment and professional trainers.",
+    flag: "",
+  },
+  "bfd-enhanced": {
+    text: "A premium fitness destination with 130+ advanced equipments, wellness & recovery facilities.",
+    flag: "Flagship Premium Branch",
+  },
+};
+
+// Home page "More than a gym" tiles – slug se SERVICES se link hota hai
+export const HOME_SERVICE_TILES = [
+  { icon: "Dumbbell", label: "Strength Training", to: "/services/strength-training" },
+  { icon: "Activity", label: "Cardio", to: "/services/cardio-training" },
+  { icon: "Flame", label: "HYROX & Functional", to: "/services/hyrox-functional-training" },
+  { icon: "Users", label: "Group Classes", to: "/services/zumba-group-classes" },
+  { icon: "Flower2", label: "Yoga & Pilates", to: "/services/yoga" },
+  { icon: "Snowflake", label: "Wellness & Recovery", to: "/wellness-recovery" },
+];
